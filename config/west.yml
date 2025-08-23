@@ -1,6 +1,6 @@
 manifest:
-  defaults:
-    revision: v0.3
+  # defaults:
+  #   revision: v0.3
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
@@ -11,7 +11,8 @@ manifest:
   projects:
     - name: zmk
       remote: zmkfirmware
-      import: app/west.yml
+      # import: app/west.yml
+      revision: main
     - name: zmk-pmw3610-driver
       remote: badjeff
       revision: main
