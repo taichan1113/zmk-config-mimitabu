@@ -1,0 +1,9 @@
+if SHIELD_MIMITABU
+
+config ZMK_KEYBOARD_NAME
+    default "MiMi-TaBu"
+
+endif
+
+config SPI
+	default y

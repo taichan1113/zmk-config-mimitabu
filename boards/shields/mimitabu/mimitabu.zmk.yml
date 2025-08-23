@@ -1,0 +1,10 @@
+file_format: "1"
+id: mimitabu
+name: mimitabu
+type: shield
+url: https://github.com/taichan1113/zmk-config-mimitabu
+requires: [seeeduino_xiao_ble]
+features:
+  - keys
+  - pointer
+  # - studio
