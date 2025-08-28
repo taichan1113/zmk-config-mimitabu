@@ -23,11 +23,12 @@
       tapping-term-ms = <200>;
       bindings = <&mo>, <&kp>;
     };
-    tog_lt: toggle_layertap {
+    mo_to: toggle_layertap {
       compatible = "zmk,behavior-hold-tap";
       #binding-cells = <2>;
+      hold-while-undecided;
       tapping-term-ms = <200>;
-      bindings = <&mo>, <&tog>;
+      bindings = <&mo>, <&to>;
     };
     td_bth_dvc: tap_dance_bluetooth_device {
       compatible = "zmk,behavior-tap-dance";
@@ -43,7 +44,7 @@
       display-name = "Default";
       bindings = <
          &mkp LCLK &mkp RCLK
-         &mkp MCLK &tog_lt SCRL SCRL
+         &mkp MCLK &mo_to SCRL SCRL
          &mkp MB5 &td_bth_dvc &mkp MB4
       >;
     };
@@ -51,8 +52,8 @@
       display-name = "Scroller";
       bindings = <
         &trans &trans
-        &trans &trans
-        &trans &trans &trans
+        &trans &to DEFAULT
+        &kp C_VOL_UP &kp C_MUTE &kp C_VOL_DN
       >;
     };
     bluetooth_layer {
@@ -66,9 +67,9 @@
     device_layer {
       display-name = "Device";
       bindings = <
-        &trans &trans
+        &kp C_BRI_DEC &kp C_BRI_INC
         &trans &bootloader
-        &trans &trans &trans
+        &kp C_NEXT &kp C_PLAY_PAUSE &kp C_PREVIOUS
       >;
     };
   };
