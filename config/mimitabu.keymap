@@ -30,7 +30,7 @@
   };
 
   combos {
-    compatible = "zmk, combos";
+    compatible = "zmk,combos";
     combo_bt_clear { // clear bluetooth connection for seleted profile
       layers = <BTH>;
       key-positions = <2 3>;
