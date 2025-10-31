@@ -4,37 +4,37 @@
 #include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/outputs.h>
 #include <behaviors/rgbled_widget.dtsi>
-#include <dt-bindings/zmk/mouse.h>
 
 // layers
-#define DEFAULT 0
-#define SCRL 1
-#define BTH 2
-#define DEVICE 3
+#define DEF 0 // default
+#define SCRL 1 // scroll
+#define BTH 2 // bluetooth
+#define DVC 3 // device
 
 / {
 
   behaviors {
-    lth: lt-hold-while-undecided {
-      compatible = "zmk,behavior-hold-tap";
-      #binding-cells = <2>;
-      flavor = "hold-preferred";
-      hold-while-undecided;
-      tapping-term-ms = <200>;
-      bindings = <&mo>, <&kp>;
-    };
-    mo_to: toggle_layertap {
+    mo_to: momentary-to-layer { // momentary on hold or to when tap
       compatible = "zmk,behavior-hold-tap";
       #binding-cells = <2>;
       hold-while-undecided;
       tapping-term-ms = <200>;
       bindings = <&mo>, <&to>;
     };
-    td_bth_dvc: tap_dance_bluetooth_device {
+    td_bth_dvc: tap_dance_bluetooth_device { // bluetooth layer when one tap, device layer when two taps
       compatible = "zmk,behavior-tap-dance";
       #binding-cells = <0>;
       tapping-term-ms = <300>;
-      bindings = <&tog BTH>, <&tog DEVICE>;
+      bindings = <&tog BTH>, <&tog DVC>;
+    };
+  };
+
+  combos {
+    compatible = "zmk, combos";
+    combo_bt_clear { // clear bluetooth connection for seleted profile
+      layers = <BTH>;
+      key-positions = <2 3>;
+      bindings = <&bt BT_CLR>;
     };
   };
 
@@ -51,17 +51,18 @@
     scroll_layer {
       display-name = "Scroller";
       bindings = <
-        &trans &trans
-        &trans &to DEFAULT
+        &kp LEFT_ARROW &kp RIGHT_ARROW
+        &none &to DEF
         &kp C_VOL_UP &kp C_MUTE &kp C_VOL_DN
       >;
     };
     bluetooth_layer {
       display-name = "Bluetooth";
+      // tap two middle buttons, then current profile cleared
       bindings = <
-        &bt BT_SEL 0 &bt BT_NXT
-        &bt BT_PRV  &bt BT_CLR
-        &bt BT_PRV &trans &bt BT_NXT
+        &bt BT_PRV &bt BT_NXT
+        &bt BT_SEL 0 &to DEF 
+        &bt BT_PRV &to DEF &bt BT_NXT
       >;
     };
     device_layer {
