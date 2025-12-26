@@ -21,12 +21,12 @@
       tapping-term-ms = <200>;
       bindings = <&mo>, <&to>;
     };
-    td_bth_dvc: tap_dance_bluetooth_device { // bluetooth layer when one tap, device layer when two taps
-      compatible = "zmk,behavior-tap-dance";
-      #binding-cells = <0>;
-      tapping-term-ms = <300>;
-      bindings = <&tog BTH>, <&tog DVC>;
-    };
+    // td_bth_dvc: tap_dance_bluetooth_device { // bluetooth layer when one tap, device layer when two taps
+    //   compatible = "zmk,behavior-tap-dance";
+    //   #binding-cells = <0>;
+    //   tapping-term-ms = <300>;
+    //   bindings = <&tog BTH>, <&tog DVC>;
+    // };
   };
 
   combos {
@@ -45,14 +45,14 @@
       bindings = <
          &mkp LCLK &mkp RCLK
          &mkp MCLK &mo_to SCRL SCRL
-         &mkp MB5 &td_bth_dvc &mkp MB4
+         &mkp MB5 &tog BTH &mkp MB4
       >;
     };
     scroll_layer {
       display-name = "Scroller";
       bindings = <
         &kp LEFT_ARROW &kp RIGHT_ARROW
-        &none &to DEF
+        &to DVC &to DEF
         &kp C_VOL_UP &kp C_MUTE &kp C_VOL_DN
       >;
     };
@@ -62,7 +62,7 @@
       bindings = <
         &bt BT_PRV &bt BT_NXT
         &bt BT_SEL 0 &to DEF 
-        &bt BT_PRV &to DEF &bt BT_NXT
+        &none &none &none
       >;
     };
     device_layer {
