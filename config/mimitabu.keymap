@@ -7,9 +7,10 @@
 
 // layers
 #define DEF 0 // default
-#define SCRL 1 // scroll
-#define BTH 2 // bluetooth
-#define DVC 3 // device
+#define SCRLM 1 // scroll_momentary
+#define SCRLT 2 // scroll_toggle
+#define BTH 3 // bluetooth
+#define DVC 4 // device
 
 / {
 
@@ -44,12 +45,20 @@
       display-name = "Default";
       bindings = <
          &mkp LCLK &mkp RCLK
-         &mkp MCLK &mo_to SCRL SCRL
+         &mkp MCLK &mo_to SCRLM SCRLT
          &mkp MB5 &tog BTH &mkp MB4
       >;
     };
-    scroll_layer {
-      display-name = "Scroller";
+    scroll_mo_layer {
+      display-name = "Scroller_Momentary";
+      bindings = <
+        &cpi_cyc(2) &cpi_cyc(1)
+        &trans &trans
+        &trans &trans &trans
+      >;
+    };
+    scroll_tog_layer {
+      display-name = "Scroller_Toggle";
       bindings = <
         &kp LEFT_ARROW &kp RIGHT_ARROW
         &to DVC &to DEF
