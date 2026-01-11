@@ -76,6 +76,15 @@
                     4 5 6 > ;
         };
     };
+
+    cpi_cyc: sensor_cpi_cycle {
+      compatible = "zmk,behavior-sensor-attr-cycle";
+      status = "disabled";
+      #binding-cells = <1>;
+      values = < 800 1000 1200 >;
+      attr = <0>;
+      display-name = "DPI cycle";
+  };
 };
 
 &gpio0 {
@@ -136,14 +145,19 @@
     };
 };
 
+&cpi_cyc{
+    status = "okay";
+    sensor_device = <&trackball>;
+};
+
 / {
   trackball_listener: trackball-listner {
     compatible = "zmk,input-listener";
     device = <&trackball>;
-    input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>, <&zip_xy_scaler 4 5>;
+    input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>;
 
     scroll {
-        layers = <1>;
+        layers = <1 2>;
         input-processors = <&zip_xy_to_scroll_mapper>;
         process-next;
     };

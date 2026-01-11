@@ -17,5 +17,8 @@ manifest:
     - name: zmk-rgbled-widget
       remote: caksoylar
       revision: main
+    - name: zmk-behavior-sensor-attr-cycle
+      remote: badjeff
+      revision: main
   self:
     path: config
