@@ -6,6 +6,8 @@ manifest:
       url-base: https://github.com/badjeff
     - name: caksoylar
       url-base: https://github.com/caksoylar 
+    - name: BP
+      url-base: https://github.com/taichan1113
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -19,6 +21,9 @@ manifest:
       revision: v0.3-branch
     - name: zmk-behavior-sensor-attr-cycle
       remote: badjeff
+      revision: main
+    - name: zmk-input-motion-pwm
+      remote: BP
       revision: main
   self:
     path: config
