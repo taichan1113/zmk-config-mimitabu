@@ -3,7 +3,6 @@ if SHIELD_MIMITABU
 config ZMK_KEYBOARD_NAME
     default "MIMITABU"
 
-endif
-
 config SPI
 	default y
+endif
