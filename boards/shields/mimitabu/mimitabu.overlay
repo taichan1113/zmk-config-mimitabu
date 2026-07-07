@@ -94,6 +94,7 @@
         input-codes = <INPUT_REL_X INPUT_REL_Y>;
         force = <30>;
         duration-ms = <50>;
+        fade-ms = <500>;
     };
 
 };
