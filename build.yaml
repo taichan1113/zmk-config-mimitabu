@@ -21,7 +21,10 @@
 include:
   - board: seeeduino_xiao_ble
     shield: mimitabu rgbled_adapter
-    snippet: studio-rpc-usb-uart
+    # Select exactly one pointing-device snippet:
+    # - trackball_pmw3610
+    # - trackball_paw3222
+    snippet: trackball_paw3222 studio-rpc-usb-uart
     # cmake-args: -DCONFIG_ZMK_STUDIO=y
 
   - board: seeeduino_xiao_ble

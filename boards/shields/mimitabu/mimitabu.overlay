@@ -92,9 +92,15 @@
         device = <&trackball>;
         pwms = <&pwm0 0 PWM_MSEC(10) PWM_POLARITY_NORMAL>;
         input-codes = <INPUT_REL_X INPUT_REL_Y>;
-        force = <30>;
+        force = <100>;
         duration-ms = <50>;
         fade-ms = <500>;
+
+        motion-force-min = <10>;
+        motion-force-max = <100>;
+        motion-force-scale = <4>;
+        motion-force-hold-ms = <100>;
+        motion-force-smoothing = <2>;
     };
 
 };
@@ -165,28 +171,6 @@
     status = "disabled";
 };
 
-&spi0 {
-    status = "okay";
-    compatible = "nordic,nrf-spim";
-    pinctrl-0 = <&spi0_default>;
-    pinctrl-1 = <&spi0_sleep>;
-    pinctrl-names = "default", "sleep";
-    cs-gpios = <&gpio1 11 GPIO_ACTIVE_LOW>;
-    trackball: trackball@0 {
-        status = "okay";
-        compatible = "pixart,pmw3610";
-        reg = <0>;
-        spi-max-frequency = <2000000>;
-        irq-gpios = <&gpio1 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-        cpi = <800>;
-        evt-type = <INPUT_EV_REL>;
-        x-input-code = <INPUT_REL_X>;
-        y-input-code = <INPUT_REL_Y>;
-
-        force-awake;
-    };
-};
-
 &pwm0 {
     status = "okay";
     pinctrl-0 = <&pwm0_motion_default>;
@@ -203,11 +187,11 @@
   trackball_listener: trackball-listner {
     compatible = "zmk,input-listener";
     device = <&trackball>;
-    input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>;
+    input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT)>,<&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>;
 
     scroll {
         layers = <1 2>;
-        input-processors = <&zip_xy_to_scroll_mapper>;
+        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT)>, <&zip_xy_to_scroll_mapper>;
         process-next;
     };
   };
