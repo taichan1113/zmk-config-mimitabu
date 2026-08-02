@@ -29,6 +29,6 @@ manifest:
       revision: main
     - name: zmk-input-motion-pwm
       remote: BP
-      revision: main
+      revision: feature/motion-leaky-bucket
   self:
     path: config

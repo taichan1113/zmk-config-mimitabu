@@ -24,7 +24,8 @@ include:
     # Select exactly one pointing-device snippet:
     # - trackball_pmw3610
     # - trackball_paw3222
-    snippet: trackball_paw3222 studio-rpc-usb-uart
+    # Add pwm_led_motion to enable motion-reactive PWM LED output.
+    snippet: trackball_paw3222 pwm_led_motion studio-rpc-usb-uart
     # cmake-args: -DCONFIG_ZMK_STUDIO=y
 
   - board: seeeduino_xiao_ble

@@ -4,7 +4,6 @@
 #include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/outputs.h>
 #include <behaviors/rgbled_widget.dtsi>
-#include <dt-bindings/zmk/backlight.h>
 
 // layers
 #define DEF 0 // default
@@ -29,11 +28,6 @@
     //   tapping-term-ms = <300>;
     //   bindings = <&tog BTH>, <&tog DVC>;
     // };
-    mbl: motbl {
-      compatible = "zmk,behavior-input-motion-pwm";
-      #binding-cells = <2>;
-      display-name = "Motion Backlight";
-    };
   };
 
   combos {
@@ -77,7 +71,7 @@
       bindings = <
         &bt BT_PRV &bt BT_NXT
         &bt BT_SEL 0 &to DEF 
-        &mbl BL_INC &mbl BL_TOG &mbl BL_DEC
+        &none &none &none
       >;
     };
     device_layer {
