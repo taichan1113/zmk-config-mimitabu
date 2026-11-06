@@ -95,15 +95,22 @@
         output-low;
         line-name = "Fast Battery Charge";
     };
-};
-
-&gpio1 {
+    
     led_power_gnd {
         gpio-hog;
-        gpios = <10 GPIO_ACTIVE_HIGH>;
+        gpios = <16 GPIO_ACTIVE_HIGH>;
         output-low;
         line-name = "led-power-gnd";
     };
+};
+
+&gpio1 {
+    // led_power_gnd {
+    //     gpio-hog;
+    //     gpios = <10 GPIO_ACTIVE_HIGH>;
+    //     output-low;
+    //     line-name = "led-power-gnd";
+    // };
 
     led_power_vdd {
         gpio-hog;
